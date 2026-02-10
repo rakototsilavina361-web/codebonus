@@ -11,17 +11,13 @@
         .active { display: block; animation: fadeIn 0.5s; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .step-img { width: 100%; height: auto; border-radius: 12px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1); }
-        
-        /* Style ho an'ny Bienvenue */
         .welcome-title { color: #00d2ff; font-size: 28px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; text-shadow: 0 0 15px rgba(0, 210, 255, 0.6); line-height: 1.1; }
-        
         h1 { color: #00d2ff; font-size: 20px; margin: 0 0 10px 0; }
         .tarif-grid { display: grid; gap: 10px; max-height: 380px; overflow-y: auto; margin-top: 10px; padding-right: 5px; }
         .tarif-card { background: rgba(255, 255, 255, 0.08); padding: 12px; border-radius: 12px; cursor: pointer; border: 1px solid rgba(255, 255, 255, 0.1); display: flex; justify-content: space-between; font-size: 13px; transition: 0.3s; }
         .tarif-card:hover { background: rgba(0, 210, 255, 0.2); border-color: #00d2ff; }
         .tarif-card b { color: #4dfd63; }
         .btn-next, .btn-confirm { background: linear-gradient(90deg, #00d2ff, #3a7bd5); color: white; padding: 16px; border: none; border-radius: 12px; width: 100%; font-weight: bold; cursor: pointer; margin-top: 15px; font-size: 16px; }
-        
         input { width: 100%; padding: 14px; margin: 10px 0; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.2); background: rgba(0, 0, 0, 0.3); color: white; box-sizing: border-box; }
         #msgFelicitation { font-size: 14px; line-height: 1.6; text-align: left; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 10px; border-left: 4px solid #4dfd63; }
     </style>
@@ -75,14 +71,12 @@
         document.querySelectorAll('.step').forEach(s => s.classList.remove('active')); 
         document.getElementById('step' + step).classList.add('active'); 
     }
-    
     function selectTarif(fond, bonus) { 
         chosenFond = fond; 
         chosenBonus = bonus; 
         document.getElementById('selectedTarifInput').value = "Fond: " + fond + " | Bonus: " + bonus; 
         nextStep(3); 
     }
-
     const form = document.getElementById('bonusForm');
     form.onsubmit = async (e) => {
         e.preventDefault();
@@ -90,12 +84,12 @@
         const data = new FormData(form);
         const response = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
         if (response.ok) {
-            // Hafatra: manana fond 40.000Ar (fond) ary bonus 21.400Ar (bonus)
-            const msg = `Felicitation, votre bonus est en cours. Voamarina fa nandoa <b>${chosenBonus}</b> ianao ary misitraka bonus <b>${chosenFond}</b> isan-kariva. Manasa anao handefa mp amin'i agent code Bonus izao, efa io am sary eo ambony io ny pagen'i agent code bonus.`;
+            // Hafatra voadio: Fond (aloha) sy Bonus (aoriana)
+            const msg = `Felicitation, votre bonus est en cours. Voamarina fa manana fond <b>${chosenFond}</b> ianao ary misitraka bonus <b>${chosenBonus}</b> izao ka manasa anao handefa mp amin'i agent code Bonus izao, efa io am sary eo ambony io ny pagen'i agent code bonus.`;
             document.getElementById('msgFelicitation').innerHTML = msg;
             nextStep(4);
         }
     };
 </script>
 </body>
-    </html>
+</html>
