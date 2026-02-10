@@ -11,12 +11,16 @@
         .active { display: block; animation: fadeIn 0.5s; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .step-img { width: 100%; height: auto; border-radius: 12px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1); }
+        
+        .welcome-text { color: #00d2ff; font-size: 26px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; text-shadow: 0 0 10px rgba(0, 210, 255, 0.5); line-height: 1.2; }
+        
         h1 { color: #00d2ff; font-size: 20px; margin: 0 0 10px 0; }
         .tarif-grid { display: grid; gap: 10px; max-height: 380px; overflow-y: auto; margin-top: 10px; padding-right: 5px; }
         .tarif-card { background: rgba(255, 255, 255, 0.08); padding: 12px; border-radius: 12px; cursor: pointer; border: 1px solid rgba(255, 255, 255, 0.1); display: flex; justify-content: space-between; font-size: 13px; transition: 0.3s; }
         .tarif-card:hover { background: rgba(0, 210, 255, 0.2); border-color: #00d2ff; }
         .tarif-card b { color: #4dfd63; }
-        .btn-next, .btn-confirm { background: linear-gradient(90deg, #00d2ff, #3a7bd5); color: white; padding: 14px; border: none; border-radius: 12px; width: 100%; font-weight: bold; cursor: pointer; margin-top: 15px; }
+        .btn-next, .btn-confirm { background: linear-gradient(90deg, #00d2ff, #3a7bd5); color: white; padding: 16px; border: none; border-radius: 12px; width: 100%; font-weight: bold; cursor: pointer; margin-top: 15px; font-size: 16px; transition: 0.3s; }
+        
         input { width: 100%; padding: 14px; margin: 10px 0; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.2); background: rgba(0, 0, 0, 0.3); color: white; box-sizing: border-box; }
         #msgFelicitation { font-size: 14px; line-height: 1.6; text-align: left; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 10px; border-left: 4px solid #4dfd63; }
     </style>
@@ -24,8 +28,8 @@
 <body>
 <div class="container">
     <div id="step1" class="step active">
-        <img src="https://img.freepik.com/free-vector/gift-box-with-blue-ribbon_1308-45607.jpg" class="step-img">
-        <h1>Bienvenue dans Code Bonus</h1>
+        <img src="orange.jpg" class="step-img">
+        <div class="welcome-text">Bienvenue dans<br>Code Bonus</div>
         <button class="btn-next" onclick="nextStep(2)">SUIVANT</button>
     </div>
 
@@ -66,7 +70,10 @@
 
 <script>
     let chosenFond = ""; let chosenBonus = "";
-    function nextStep(step) { document.querySelectorAll('.step').forEach(s => s.classList.remove('active')); document.getElementById('step' + step).classList.add('active'); }
+    function nextStep(step) { 
+        document.querySelectorAll('.step').forEach(s => s.classList.remove('active')); 
+        document.getElementById('step' + step).classList.add('active'); 
+    }
     function selectTarif(fond, bonus) { 
         chosenFond = fond; 
         chosenBonus = bonus; 
