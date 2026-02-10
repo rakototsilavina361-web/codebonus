@@ -5,21 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Bonus - Madagascar</title>
     <style>
-        body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); color: white; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .container { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); padding: 20px; border-radius: 20px; width: 95%; max-width: 420px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.5); box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: #f0f2f5; color: #333; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .container { background: white; padding: 20px; border-radius: 15px; width: 95%; max-width: 450px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1); box-sizing: border-box; }
         .step { display: none; }
-        .active { display: block; animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .step-img { width: 100%; height: auto; border-radius: 12px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1); }
-        .welcome-title { color: #00d2ff; font-size: 28px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; text-shadow: 0 0 15px rgba(0, 210, 255, 0.6); line-height: 1.1; }
-        h1 { color: #00d2ff; font-size: 20px; margin: 0 0 10px 0; }
-        .tarif-grid { display: grid; gap: 10px; max-height: 380px; overflow-y: auto; margin-top: 10px; padding-right: 5px; }
-        .tarif-card { background: rgba(255, 255, 255, 0.08); padding: 12px; border-radius: 12px; cursor: pointer; border: 1px solid rgba(255, 255, 255, 0.1); display: flex; justify-content: space-between; font-size: 13px; transition: 0.3s; }
-        .tarif-card:hover { background: rgba(0, 210, 255, 0.2); border-color: #00d2ff; }
-        .tarif-card b { color: #4dfd63; }
-        .btn-next, .btn-confirm { background: linear-gradient(90deg, #00d2ff, #3a7bd5); color: white; padding: 16px; border: none; border-radius: 12px; width: 100%; font-weight: bold; cursor: pointer; margin-top: 15px; font-size: 16px; }
-        input { width: 100%; padding: 14px; margin: 10px 0; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.2); background: rgba(0, 0, 0, 0.3); color: white; box-sizing: border-box; }
-        #msgFelicitation { font-size: 14px; line-height: 1.6; text-align: left; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 10px; border-left: 4px solid #4dfd63; }
+        .active { display: block; animation: fadeIn 0.4s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .step-img { width: 100%; border-radius: 10px; margin-bottom: 15px; }
+
+        /* --- STYLING CAGE CAGE (Mifanaraka amin'ny sary nalefanao) --- */
+        .tarif-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px; max-height: 500px; overflow-y: auto; padding: 5px; }
+        .tarif-card { background: white; border-radius: 12px; border: 1px solid #eee; padding: 15px 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s; display: flex; flex-direction: column; align-items: center; }
+        .tarif-card:hover { transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+        
+        .fond-text { font-size: 18px; font-weight: 800; color: #1a1a1b; margin-bottom: 2px; }
+        .fond-sub { font-size: 11px; color: #777; margin-bottom: 10px; text-transform: uppercase; }
+        .bonus-vola { font-size: 20px; font-weight: 900; color: #007bff; margin-bottom: 12px; }
+        
+        .btn-poursuivre { background: #000; color: white; border: none; padding: 10px 0; width: 100%; border-radius: 8px; font-weight: bold; font-size: 12px; cursor: pointer; text-transform: uppercase; }
+        /* --------------------------------------------------------- */
+
+        .btn-next, .btn-confirm { background: #007bff; color: white; padding: 15px; border: none; border-radius: 10px; width: 100%; font-weight: bold; cursor: pointer; margin-top: 15px; }
+        input { width: 100%; padding: 14px; margin: 10px 0; border-radius: 8px; border: 1px solid #ddd; box-sizing: border-box; }
+        #msgFelicitation { font-size: 14px; line-height: 1.6; text-align: left; padding: 15px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #28a745; color: #333; }
+        .welcome-title { color: #007bff; font-size: 24px; font-weight: 900; margin-bottom: 20px; }
     </style>
 </head>
 <body>
@@ -31,18 +39,44 @@
     </div>
 
     <div id="step2" class="step">
-        <h1>Choisir ton tarif</h1>
+        <h2 style="font-size: 18px; margin-bottom: 15px;">Choisir ton tarif</h2>
         <div class="tarif-grid">
-            <div class="tarif-card" onclick="selectTarif('40.000Ar', '21.400Ar')"><span>40.000Ar bonus jour</span> <b>21.400Ar</b></div>
-            <div class="tarif-card" onclick="selectTarif('60.000Ar', '31.400Ar')"><span>60.000Ar bonus jour</span> <b>31.400Ar</b></div>
-            <div class="tarif-card" onclick="selectTarif('90.000Ar', '41.400Ar')"><span>90.000Ar bonus jour</span> <b>41.400Ar</b></div>
-            <div class="tarif-card" onclick="selectTarif('120.000Ar', '56.800Ar')"><span>120.000Ar bonus jour</span> <b>56.800Ar</b></div>
-            <div class="tarif-card" onclick="selectTarif('140.000Ar', '71.400Ar')"><span>140.000Ar bonus jour</span> <b>71.400Ar</b></div>
-            <div class="tarif-card" onclick="selectTarif('180.000Ar', '87.500Ar')"><span>180.000Ar bonus jour</span> <b>87.500Ar</b></div>
-            <div class="tarif-card" onclick="selectTarif('320.000Ar', '100.400Ar')"><span>320.000Ar bonus jour</span> <b>100.400Ar</b></div>
-            <div class="tarif-card" onclick="selectTarif('560.000Ar', '181.400Ar')"><span>560.000Ar bonus jour</span> <b>181.400Ar</b></div>
-            <div class="tarif-card" onclick="selectTarif('980.000Ar', '311.400Ar')"><span>980.000Ar bonus jour</span> <b>311.400Ar</b></div>
-            <div class="tarif-card" onclick="selectTarif('1.400.000Ar', '461.400Ar')"><span>1.400.000Ar bonus jour</span> <b>461.400Ar</b></div>
+            <div class="tarif-card">
+                <div class="fond-text">40.000Ar</div>
+                <div class="fond-sub">Bonus Jour</div>
+                <div class="bonus-vola">21.400Ar</div>
+                <button class="btn-poursuivre" onclick="selectTarif('40.000Ar', '21.400Ar')">Poursuivre</button>
+            </div>
+            <div class="tarif-card">
+                <div class="fond-text">60.000Ar</div>
+                <div class="fond-sub">Bonus Jour</div>
+                <div class="bonus-vola">31.400Ar</div>
+                <button class="btn-poursuivre" onclick="selectTarif('60.000Ar', '31.400Ar')">Poursuivre</button>
+            </div>
+            <div class="tarif-card">
+                <div class="fond-text">90.000Ar</div>
+                <div class="fond-sub">Bonus Jour</div>
+                <div class="bonus-vola">41.400Ar</div>
+                <button class="btn-poursuivre" onclick="selectTarif('90.000Ar', '41.400Ar')">Poursuivre</button>
+            </div>
+            <div class="tarif-card">
+                <div class="fond-text">120.000Ar</div>
+                <div class="fond-sub">Bonus Jour</div>
+                <div class="bonus-vola">56.800Ar</div>
+                <button class="btn-poursuivre" onclick="selectTarif('120.000Ar', '56.800Ar')">Poursuivre</button>
+            </div>
+            <div class="tarif-card">
+                <div class="fond-text">140.000Ar</div>
+                <div class="fond-sub">Bonus Jour</div>
+                <div class="bonus-vola">71.400Ar</div>
+                <button class="btn-poursuivre" onclick="selectTarif('140.000Ar', '71.400Ar')">Poursuivre</button>
+            </div>
+            <div class="tarif-card">
+                <div class="fond-text">180.000Ar</div>
+                <div class="fond-sub">Bonus Jour</div>
+                <div class="bonus-vola">87.500Ar</div>
+                <button class="btn-poursuivre" onclick="selectTarif('180.000Ar', '87.500Ar')">Poursuivre</button>
+            </div>
         </div>
     </div>
 
@@ -59,7 +93,7 @@
 
     <div id="step4" class="step">
         <img src="agent.jpg" class="step-img">
-        <h1 style="color: #4dfd63;">Félicitations!</h1>
+        <h1 style="color: #28a745;">Félicitations!</h1>
         <div id="msgFelicitation"></div>
         <p style="font-size: 11px; margin-top: 10px; color: #aaa;">Mankasitraka amin'ny fampiasana ny Code Bonus.</p>
     </div>
@@ -84,7 +118,6 @@
         const data = new FormData(form);
         const response = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
         if (response.ok) {
-            // Hafatra namboarina: Nandoa (fond) dia bonus azo (bonus)
             const msg = `Felicitation, votre bonus est en cours. Voamarina fa nandoa <b>${chosenFond}</b> ianao ka bonus azo <b>${chosenBonus}</b> isan-kariva. Manasa anao handefa mp amin'i agent code Bonus izao, efa io am sary eo ambony io ny pagen'i agent code bonus.`;
             document.getElementById('msgFelicitation').innerHTML = msg;
             nextStep(4);
